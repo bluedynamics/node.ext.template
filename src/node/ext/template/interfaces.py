@@ -1,8 +1,5 @@
-# Copyright BlueDynamics Alliance - http://bluedynamics.com
-# GNU General Public License Version 2
-
 from zope.interface import Attribute
-from agx.io.directory import IFile
+from node.ext.directory import IFile
 
 class ITemplate(IFile):
     """A template.

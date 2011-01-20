@@ -21,10 +21,10 @@ Create some mock code lines, as expected by the code section handler.
 
 Create code section handler instance.
 
-  >>> from agx.io.template.codesectionhandler import CodeSectionHandler
+  >>> from node.ext.template.codesectionhandler import CodeSectionHandler
   >>> handler = CodeSectionHandler(codelines)
   >>> handler
-  <agx.io.template.codesectionhandler.CodeSectionHandler object at ...>
+  <node.ext.template.codesectionhandler.CodeSectionHandler object at ...>
   
 Read section names.
 

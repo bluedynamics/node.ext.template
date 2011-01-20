@@ -3,7 +3,7 @@ import os
 from StringIO import StringIO
 from zope.interface import implements
 from zodict.node import Node
-from agx.io.template.interfaces import ITemplate
+from node.ext.template.interfaces import ITemplate
 from zope.documenttemplate import HTML
 from jinja2 import Template as JTemplate
 from chameleon.zpt.template import PageTemplate

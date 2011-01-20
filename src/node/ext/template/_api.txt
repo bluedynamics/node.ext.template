@@ -2,7 +2,7 @@
 Template
 ========
 
-``agx.io.template.interfaces.ITemplate`` implementations are
+``node.ext.template.interfaces.ITemplate`` implementations are
 responsible to create and dump concrete generated files to the filesystem.
 
 At ``__init__`` time, this objects expect a template path.
@@ -19,14 +19,14 @@ Abstract base template
 
 There exists an abstract template implementation. It provides some convenience.
 
-  >>> from agx.io.template._api import TemplateBase
+  >>> from node.ext.template._api import TemplateBase
   >>> targetpath = os.path.join(tempdir, 'abstractbase.txt')
   >>> targetpath
   '...abstractbase.txt'
   
   >>> abstracttemplate = TemplateBase(targetpath)
   >>> abstracttemplate
-  <agx.io.template._api.TemplateBase object at ...>
+  <node.ext.template._api.TemplateBase object at ...>
   
   >>> abstracttemplate.path
   ['...abstractbase.txt']
@@ -111,11 +111,11 @@ And some generated and modified file.
 
 Now create the template.
 
-  >>> from agx.io.template import SectionedTemplate
+  >>> from node.ext.template import SectionedTemplate
   >>> sectiontemplate = SectionedTemplate(manuallymodifiedtarget)
   >>> sectiontemplate.template = sectionedtemplatetarget
   >>> sectiontemplate
-  <agx.io.template._api.SectionedTemplate object at ...>
+  <node.ext.template._api.SectionedTemplate object at ...>
   
 First check expected functionality manually.
   
@@ -193,11 +193,11 @@ And an existing by this template generated file.
   
 Create the DTML template.
 
-  >>> from agx.io.template import DTMLTemplate
+  >>> from node.ext.template import DTMLTemplate
   >>> dtmltemplate = DTMLTemplate(dtmlmodifiedtarget)
   >>> dtmltemplate.template = dtmltemplatetarget
   >>> dtmltemplate
-  <agx.io.template._api.DTMLTemplate object at ...>
+  <node.ext.template._api.DTMLTemplate object at ...>
 
 Check the DTML execution.
   
@@ -260,13 +260,13 @@ And an existing by this template generated file.
   >>> with codecs.open(jinjamodifiedtarget, 'w', encoding='utf-8') as out:
   ...     out.write(jinjamodified)
   
-Create the AGX Jinja template.
+Create the node based Jinja template.
 
-  >>> from agx.io.template import JinjaTemplate
+  >>> from node.ext.template import JinjaTemplate
   >>> jinjatemplate = JinjaTemplate(jinjamodifiedtarget)
   >>> jinjatemplate.template = jinjatemplatetarget
   >>> jinjatemplate
-  <agx.io.template._api.JinjaTemplate object at ...>
+  <node.ext.template._api.JinjaTemplate object at ...>
 
 Check the  Jinja execution.
   
@@ -326,11 +326,11 @@ Create env.
 
 Create the XML template.
 
-  >>> from agx.io.template import XMLTemplate
+  >>> from node.ext.template import XMLTemplate
   >>> xmltemplate = XMLTemplate(xmlmodifiedtarget)
   >>> xmltemplate.template = xmltemplatetarget
   >>> xmltemplate
-  <agx.io.template._api.XMLTemplate object at ...>
+  <node.ext.template._api.XMLTemplate object at ...>
 
 Call it and watch the result.
 
@@ -354,7 +354,7 @@ Clean up test Environment.
 ZPTemplate
 ----------
 
->>> from agx.io.template import ZPTemplate
+>>> from node.ext.template import ZPTemplate
 >>> zptemplate = ZPTemplate("""\
 ... <div xmlns="http://www.w3.org/1999/xhtml">
 ...   Hello World!
