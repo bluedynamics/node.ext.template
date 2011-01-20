@@ -29,8 +29,13 @@ setup(name='node.ext.template',
       install_requires=[
           'setuptools',
           'node',
+          'node.ext.directory',
           'plumber',
           'zope.interface',
+          # TODO: make me optional...
+          'zope.documenttemplate',
+          'jinja2',
+          'chameleon.zpt',
       ],
       extras_require={
           'test': [
