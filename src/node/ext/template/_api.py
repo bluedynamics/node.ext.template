@@ -1,4 +1,4 @@
-from plumbing import Plumbing
+from plumber import Plumber
 import codecs
 import os
 from StringIO import StringIO
@@ -12,7 +12,7 @@ from chameleon.zpt.template import PageTemplate
 from codesectionhandler import CodeSectionHandler
 
 class TemplateBase(BaseNode):
-    __metaclass__ = Plumbing
+    __metaclass__ = Plumber
     __pipeline__ = Reference
     """Base template.
     """
