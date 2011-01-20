@@ -1,15 +1,19 @@
+from plumbing import Plumbing
 import codecs
 import os
 from StringIO import StringIO
 from zope.interface import implements
-from zodict.node import Node
+from node.base import BaseNode
+from node.plumbing.reference import Reference
 from node.ext.template.interfaces import ITemplate
 from zope.documenttemplate import HTML
 from jinja2 import Template as JTemplate
 from chameleon.zpt.template import PageTemplate
 from codesectionhandler import CodeSectionHandler
 
-class TemplateBase(Node):
+class TemplateBase(BaseNode):
+    __metaclass__ = Plumbing
+    __pipeline__ = Reference
     """Base template.
     """
 
@@ -20,7 +24,7 @@ class TemplateBase(Node):
 
         @param path: path to output target
         """
-        Node.__init__(self, name=path)
+        super(TemplateBase, self).__init__(name=path)
         self.params = dict()
         self.template = None
 
