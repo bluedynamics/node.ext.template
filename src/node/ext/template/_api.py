@@ -1,21 +1,22 @@
-from plumber import Plumber
+from plumber import plumber
 import codecs
 import os
 from StringIO import StringIO
 from zope.interface import implements
 from node.base import BaseNode
-from node.plumbing.reference import Reference
+from node.parts import Reference
 from node.ext.template.interfaces import ITemplate
 from zope.documenttemplate import HTML
 from jinja2 import Template as JTemplate
 from chameleon.zpt.template import PageTemplate
 from codesectionhandler import CodeSectionHandler
 
+
 class TemplateBase(BaseNode):
-    __metaclass__ = Plumber
-    __pipeline__ = Reference
     """Base template.
     """
+    __metaclass__ = plumber
+    __plumbing__ = Reference
 
     implements(ITemplate)
 
@@ -59,6 +60,7 @@ class TemplateBase(BaseNode):
     def abspath(self):
         return os.path.join(*self.path)
 
+
 class SectionedTemplate(TemplateBase, CodeSectionHandler):
     """Template implementation providing to handle code sections.
     """
@@ -81,6 +83,7 @@ class SectionedTemplate(TemplateBase, CodeSectionHandler):
                 self.setsection(name, sections[name])
         return self.codelines
 
+
 class JinjaTemplate(SectionedTemplate):
     """Template handler using ``jinja2.Template`` templates for
     output generation.
@@ -99,6 +102,7 @@ class JinjaTemplate(SectionedTemplate):
         template = JTemplate(template)
         return [line + u"\n"
             for line in template.render(**params).split(u"\n")]
+
 
 class DTMLTemplate(SectionedTemplate):
     """Template handler using ``zope.documenttemplate.HTML`` templates for
@@ -128,6 +132,7 @@ class DTMLTemplate(SectionedTemplate):
             print msg
             raise
 
+
 class XMLTemplate(DTMLTemplate):
     """Template handler for XML files.
     """
@@ -135,6 +140,7 @@ class XMLTemplate(DTMLTemplate):
     SECTION_BEGIN = '<!-- code-section'
     SECTION_END = '<!-- /code-section'
     SECTION_POSTFIX = ' -->'
+
 
 class ZPTemplate(PageTemplate):
     """ Template handler for zope page templates
