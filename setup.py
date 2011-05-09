@@ -35,7 +35,7 @@ setup(name='node.ext.template',
           # TODO: make me optional...
           'zope.documenttemplate',
           'jinja2',
-          'chameleon.zpt',
+          'Chameleon',
       ],
       extras_require={
           'test': [
