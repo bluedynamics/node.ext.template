@@ -20,12 +20,12 @@ class TemplateBase(BaseNode):
 
     implements(ITemplate)
 
-    def __init__(self, path=None):
+    def __init__(self, name=None, parent=None):
         """Initialize template.
 
         @param path: path to output target
         """
-        super(TemplateBase, self).__init__(name=path)
+        super(TemplateBase, self).__init__(name=name, parent=parent)
         self.params = dict()
         self.template = None
 
