@@ -10,8 +10,8 @@ optionflags = doctest.NORMALIZE_WHITESPACE | \
               doctest.REPORT_ONLY_FIRST_FAILURE
 
 TESTFILES = [
-    '../codesectionhandler.txt',
-    '../_api.txt',
+    '../codesectionhandler.rst',
+    '../template.rst',
 ]
 
 

@@ -1,6 +1,7 @@
-from plumber import plumber
-import codecs
 import os
+import codecs
+import pkg_resources
+from plumber import plumber
 from StringIO import StringIO
 from zope.interface import implements
 from node.base import BaseNode
@@ -90,6 +91,9 @@ class JinjaTemplate(SectionedTemplate):
     """
 
     def __call__(self):
+        if not self.template:
+            # not completly initialized, do nothing 
+            return
         self.write(self.handlesections(self.existentbuffer(self.abspath),
                                        self.execjinja()))
 
@@ -110,6 +114,9 @@ class DTMLTemplate(SectionedTemplate):
     """
 
     def __call__(self):
+        if not self.template:
+            # not completly initialized, do nothing
+            return
         self.write(self.handlesections(self.existentbuffer(self.abspath),
                                        self.execdtml()))
 
