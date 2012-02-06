@@ -28,13 +28,24 @@ class TemplateBase(BaseNode):
         """
         super(TemplateBase, self).__init__(name=name, parent=parent)
         self.params = dict()
-        self.template = None
+        self._template = None
 
     def __call__(self):
         raise NotImplementedError(u"Abstract template handler does not "
                                    "implement ``__call__()``")
 
     __repr__ = object.__repr__
+    
+    def _get_template(self):
+        return self._template
+    
+    def _set_template(self, template):
+        if template.find(':') > -1:
+            package, subpath = template.split(':')
+            template = pkg_resources.resource_filename(package, subpath)
+        self._template = template
+    
+    template = property(_get_template, _set_template)
 
     def existentbuffer(self, target):
         """Try to read target file and return its contents as list of lines.
