@@ -5,7 +5,7 @@ from plumber import plumber
 from StringIO import StringIO
 from zope.interface import implements
 from node.base import BaseNode
-from node.parts import Reference
+from node.behaviors import Reference
 from node.ext.template.interfaces import ITemplate
 from zope.documenttemplate import HTML
 from jinja2 import Template as JTemplate
