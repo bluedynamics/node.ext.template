@@ -1,23 +1,22 @@
 import unittest
 import doctest
-import zope.component
 from pprint import pprint
 from interlude import interact
 from zope.configuration.xmlconfig import XMLConfig
+
 
 optionflags = doctest.NORMALIZE_WHITESPACE | \
               doctest.ELLIPSIS | \
               doctest.REPORT_ONLY_FIRST_FAILURE
 
+
 TESTFILES = [
-    '../codesectionhandler.rst',
-    '../template.rst',
+    'codesectionhandler.rst',
+    'template.rst',
 ]
 
 
 def test_suite():
-    XMLConfig('meta.zcml', zope.component)()
-
     return unittest.TestSuite([
         doctest.DocFileSuite(
             file,
@@ -25,6 +24,7 @@ def test_suite():
             globs={'interact': interact,
                    'pprint': pprint},
         ) for file in TESTFILES])
+
 
 if __name__ == '__main__':
     unittest.main(defaultTest='test_suite')
