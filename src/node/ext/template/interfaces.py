@@ -1,6 +1,7 @@
 from zope.interface import Attribute
 from node.ext.directory.interfaces import IFile
 
+
 class ITemplate(IFile):
     """A template.
     """

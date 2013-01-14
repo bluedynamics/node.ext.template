@@ -12,10 +12,8 @@ class CodeSectionHandler(object):
     You can control begin and end patterns due ``self.SECTION_BEGIN`` and
     ``self.SECTION_END`` attributes.
     """
-
     # XXX: improve code section handler to be able to use section patterns
     #      which can contain characters after section name.
-
     SECTION_BEGIN = '##code-section'
     SECTION_END = '##/code-section'
     SECTION_POSTFIX = ''
@@ -74,8 +72,7 @@ class CodeSectionHandler(object):
             if line.find(self.BEGIN_PATTERN % name) != -1:
                 sectioncontent = True
         raise Exception(
-            '%s - Section not found or no section end pattern set.'
-            % name)
+            '%s - Section not found or no section end pattern set.' % name)
 
     def setsection(self, name, code):
         """Set the contents of code section by name.
@@ -96,5 +93,4 @@ class CodeSectionHandler(object):
                 startindex = index
             index += 1
         raise Exception(
-            '%s - Section not found or no section end pattern set.'
-            % name)
+            '%s - Section not found or no section end pattern set.' % name)

@@ -1,5 +1,8 @@
 import os
-from setuptools import setup, find_packages
+from setuptools import (
+    setup,
+    find_packages,
+)
 
 
 version = '0.1'
@@ -17,7 +20,7 @@ setup(name='node.ext.template',
           'License :: OSI Approved :: GNU General Public License (GPL)',
           'Operating System :: OS Independent',
           'Programming Language :: Python',
-      ], # Get strings from http://www.python.org/pypi?:action=list_classifiers
+      ],
       keywords='',
       author='BlueDynamics Alliance',
       author_email='dev@bluedynamics.com',

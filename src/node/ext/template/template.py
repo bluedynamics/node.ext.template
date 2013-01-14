@@ -3,7 +3,7 @@ import codecs
 import pkg_resources
 from plumber import plumber
 from StringIO import StringIO
-from zope.interface import implements
+from zope.interface import implementer
 from node.base import BaseNode
 from node.behaviors import Reference
 from node.ext.template.interfaces import ITemplate
@@ -13,13 +13,12 @@ from chameleon.zpt.template import PageTemplate
 from codesectionhandler import CodeSectionHandler
 
 
+@implementer(ITemplate)
 class TemplateBase(BaseNode):
     """Base template.
     """
     __metaclass__ = plumber
     __plumbing__ = Reference
-
-    implements(ITemplate)
 
     def __init__(self, name=None, parent=None):
         """Initialize template.
@@ -35,16 +34,16 @@ class TemplateBase(BaseNode):
                                    "implement ``__call__()``")
 
     __repr__ = object.__repr__
-    
+
     def _get_template(self):
         return self._template
-    
+
     def _set_template(self, template):
         if template.find(':') > -1:
             package, subpath = template.split(':')
             template = pkg_resources.resource_filename(package, subpath)
         self._template = template
-    
+
     template = property(_get_template, _set_template)
 
     def existentbuffer(self, target):
@@ -154,7 +153,6 @@ class DTMLTemplate(SectionedTemplate):
 class XMLTemplate(DTMLTemplate):
     """Template handler for XML files.
     """
-
     SECTION_BEGIN = '<!-- code-section'
     SECTION_END = '<!-- /code-section'
     SECTION_POSTFIX = ' -->'

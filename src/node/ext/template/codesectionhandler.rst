@@ -24,7 +24,7 @@ Create code section handler instance::
     >>> handler = CodeSectionHandler(codelines)
     >>> handler
     <node.ext.template.codesectionhandler.CodeSectionHandler object at ...>
-  
+
 Read section names::
 
     >>> names = handler.sectionnames
@@ -36,7 +36,7 @@ Read section contents::
 
     >>> handler.getsection('foo')
     ['section foo']
-  
+
 Set the contents for a code section::
 
     >>> handler.setsection('foo', ['set contents for foo'])
@@ -49,15 +49,15 @@ section indication is controlled by the attributes ``SECTION_BEGIN`` and
 
     >>> handler.SECTION_BEGIN
     '##code-section'
-  
+
     >>> handler.SECTION_END
     '##/code-section'
 
 The handler then uses patterns to detect the sections::
-  
+
     >>> handler.BEGIN_PATTERN
     '##code-section %s'
-  
+
     >>> handler.END_PATTERN
     '##/code-section %s'
 
@@ -68,13 +68,13 @@ set ``SECTION_POSTFIX``, which is then appended to ``BEGIN_PATTERN`` and
     >>> handler.SECTION_BEGIN = '<!-- code-section'
     >>> handler.SECTION_END = '<!-- /code-section'
     >>> handler.SECTION_POSTFIX = ' -->'
-  
+
     >>> handler.BEGIN_PATTERN
     '<!-- code-section %s -->'
-  
+
     >>> handler.END_PATTERN
     '<!-- /code-section %s -->'
-  
+
 Check if code with other section indication works as well::
 
     >>> codelines = [
@@ -85,14 +85,14 @@ Check if code with other section indication works as well::
     ...     '<bar />',
     ...     '<!-- /code-section 2 -->' ,
     ... ]
-  
+
     >>> handler.codelines = codelines
     >>> handler.sectionnames
     ['1', '2']
-  
+
     >>> handler.getsection('1')
     ['<foo />']
-  
+
     >>> handler.setsection('1', ['<nofoo>'])
     >>> handler.getsection('1')
     ['<nofoo>']

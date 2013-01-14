@@ -24,11 +24,11 @@ convenience::
     >>> targetpath = os.path.join(tempdir, 'abstractbase.txt')
     >>> targetpath
     '...abstractbase.txt'
-  
+
     >>> abstracttemplate = TemplateBase(targetpath)
     >>> abstracttemplate
     <node.ext.template.template.TemplateBase object at ...>
-  
+
     >>> abstracttemplate.path
     ['...abstractbase.txt']
 
@@ -71,7 +71,7 @@ base template is abstract this will fail::
     NotImplementedError: Abstract template handler does not implement 
     ``__call__()``
 
- 
+
 Template for files containing protected sections
 ------------------------------------------------
 
@@ -119,14 +119,14 @@ Now create the template::
     >>> sectiontemplate.template = sectionedtemplatetarget
     >>> sectiontemplate
     <node.ext.template.template.SectionedTemplate object at ...>
-  
+
 First check expected functionality manually::
-  
+
     >>> out = sectiontemplate.existentbuffer(sectionedtemplatetarget)
     >>> out
     [u'\n', u'##code-section first\n', u'##/code-section first\n', 
     u'\n', u'slightly modified generated stuff\n']
-  
+
     >>> existent = sectiontemplate.existentbuffer(manuallymodifiedtarget)
     >>> existent
     [u'\n', u'##code-section first\n', u'i am the manually created content\n', 
@@ -180,7 +180,7 @@ Create some test environment. We need a DTML template::
     ...                                   'dtmltemplate.txt')
     >>> with codecs.open(dtmltemplatetarget, 'w', encoding='utf-8') as out:
     ...     out.write(dtmltemplate)
-  
+
 And an existing by this template generated file::
 
     >>> dtmlmodified = u"""
@@ -194,7 +194,7 @@ And an existing by this template generated file::
     ...                                   'dtmlmodified.txt')
     >>> with codecs.open(dtmlmodifiedtarget, 'w', encoding='utf-8') as out:
     ...     out.write(dtmlmodified)
-  
+
 Create the DTML template::
 
     >>> from node.ext.template import DTMLTemplate
@@ -204,7 +204,7 @@ Create the DTML template::
     <node.ext.template.template.DTMLTemplate object at ...>
 
 Check the DTML execution::
-  
+
     >>> dtmltemplate.params['someparam'] = u'Anothervalue'
     >>> dtmltemplate.execdtml()
     [u'\n', 
@@ -225,7 +225,7 @@ Lets do the handler's ``__call__`` the work::
     u'##/code-section first\n', 
     u'\n', 
     u'Param modified: FooBarBaz\n']
-  
+
 
 Jinja templates
 ---------------
@@ -263,7 +263,7 @@ And an existing by this template generated file::
     ...                                   'jinjamodified.txt')
     >>> with codecs.open(jinjamodifiedtarget, 'w', encoding='utf-8') as out:
     ...     out.write(jinjamodified)
-  
+
 Create the node based Jinja template::
 
     >>> from node.ext.template import JinjaTemplate
@@ -273,7 +273,7 @@ Create the node based Jinja template::
     <node.ext.template.template.JinjaTemplate object at ...>
 
 Check the  Jinja execution::
-  
+
     >>> jinjatemplate.params['someparam'] = u'Anothervalue'
     >>> jinjatemplate.execjinja()
     [u'\n', 
@@ -294,7 +294,7 @@ Lets do the handler's ``__call__`` the work::
     u'##/code-section first\n', 
     u'\n', 
     u'Param modified: FooBarBaz\n']
-  
+
 
 XML Template
 ------------
@@ -315,7 +315,7 @@ Create env::
     ...                                  'xmltemplate.xml')
     >>> with codecs.open(xmltemplatetarget, 'w', encoding='utf-8') as outfile:
     ...    outfile.write(xmltemplate)
-  
+
     >>> xmlmodified = u"""
     ... <xml>
     ...   <!-- code-section foo -->
@@ -347,7 +347,6 @@ Call it and watch the result::
     u'  <foo />\n', 
     u'  <!-- /code-section foo -->\n', 
     u'  <bar />\n', u'</xml>\n']
-  
 
 Clean up test Environment::
 
@@ -364,7 +363,7 @@ ZPTemplate
     ... <div xmlns="http://www.w3.org/1999/xhtml">
     ...   Hello World!
     ... </div>""")
-    
+
     >>> print zptemplate()
     <div xmlns="http://www.w3.org/1999/xhtml">
       Hello World!
